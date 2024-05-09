@@ -1,0 +1,14 @@
+header{
+    padding: 15px;
+    background: linear-gradient(to right, var(--cor-amarela), var(--cor-azul));
+    border-bottom: 2px solid black;
+}
+
+img{
+    width: 100px;
+}
+
+.btn{
+    background: var(--cor-amarela) !important;
+    color: black !important;
+}

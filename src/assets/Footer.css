@@ -1,0 +1,7 @@
+footer{
+    background: linear-gradient(to right, var(--cor-amarela), var(--cor-azul));
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid black;
+    color: black;
+}
