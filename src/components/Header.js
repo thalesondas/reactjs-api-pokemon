@@ -42,6 +42,20 @@ const Header = () => {
         }
     }
 
+    const pesquisarTipo = () => {
+        dispatch(setErro(''))
+        dispatch(setDados([]))
+        if(tipo1.tipo1 === ''){
+            dispatch(setErro('Pelo menos o 1º tipo tem que ser escolhido.'))
+        } else if(tipo2.tipo2 === '') {
+            fetch(`https://pokeapi.co/api/v2/type/${tipo1.tipo1}`)
+                .then((resp) => resp.json())
+                .then((respDados) => respDados.pokemon)
+                .then((respDados2) => dispatch(setDados(respDados2)))
+                .catch((err) => console.log(err))
+        }
+    }
+
     return(
         <header>
             <Container>
@@ -50,13 +64,13 @@ const Header = () => {
                         <Image src={PokeApiLogo} alt='PokéAPI Logo'/>™
                     </Col>
                     <Col>
-                        <PersonalizedFormSelect texto='Escolha o 1º tipo'/>
+                        <PersonalizedFormSelect funcao={(e) => dispatch(setTipo1(e.target.value))} texto='Escolha o 1º tipo'/>
                     </Col>
                     <Col>
-                        <PersonalizedFormSelect texto='Escolha o 2º tipo'/>
+                        <PersonalizedFormSelect funcao={(e) => dispatch(setTipo2(e.target.value))} texto='Escolha o 2º tipo'/>
                     </Col>
                     <Col>
-                        <Button>Pesquisar pelo tipo</Button>
+                        <Button onClick={pesquisarTipo}>Pesquisar pelo tipo</Button>
                     </Col>
                     <Col>
                         <Form.Control onChange={(e) => dispatch(setNome(e.target.value))} type="text" placeholder="Procure pelo nome"/>

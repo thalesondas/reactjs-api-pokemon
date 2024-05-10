@@ -11,9 +11,9 @@ const Main = () => {
         <main>
             <Container className='mb-3 mt-4'>
                 <Row className='text-center'>
-                    <Col className='d-flex flex-column'>
+                    <Col className='d-flex flex-column'>    
                         {dados.dados && dados.dados.map((pokemon) => (
-                            <PokemonButton marginBottom='mb-1' nome={pokemon.name}></PokemonButton>
+                            <PokemonButton marginBottom='mb-1' nome={pokemon.pokemon?.name || pokemon.name} />
                         ))}
                     </Col>
                     <Col >

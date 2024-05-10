@@ -2,26 +2,26 @@ import { Form } from "react-bootstrap";
 
 const PersonalizedFormSelect= (props) => {
     return(
-        <Form.Select>
-            <option>{props.texto}</option>
-            <option value="">Normal</option>
-            <option value="">Fogo</option>
-            <option value="">Água</option>
-            <option value="">Grama</option>
-            <option value="">Voador</option>
-            <option value="">Lutador</option>
-            <option value="">Inseto</option>
-            <option value="">Veneno</option>
-            <option value="">Elétrico</option>
-            <option value="">Terra</option>
-            <option value="">Pedra</option>
-            <option value="">Gelo</option>
-            <option value="">Psíquico</option>
-            <option value="">Fantasma</option>
-            <option value="">Ferro</option>
-            <option value="">Dragão</option>
-            <option value="">Sombrio</option>
-            <option value="">Fada</option>
+        <Form.Select onChange={props.funcao} >
+            <option value=''>{props.texto}</option>
+            <option value="normal">Normal</option>
+            <option value="fire">Fogo</option>
+            <option value="water">Água</option>
+            <option value="grass">Grama</option>
+            <option value="flying">Voador</option>
+            <option value="fighter">Lutador</option>
+            <option value="bug">Inseto</option>
+            <option value="poison">Veneno</option>
+            <option value="electric">Elétrico</option>
+            <option value="ground">Terra</option>
+            <option value="rock">Pedra</option>
+            <option value="ice">Gelo</option>
+            <option value="psychic">Psíquico</option>
+            <option value="ghost">Fantasma</option>
+            <option value="steel">Ferro</option>
+            <option value="dragon">Dragão</option>
+            <option value="dark">Sombrio</option>
+            <option value="fairy">Fada</option>
         </Form.Select>
     )
 }
