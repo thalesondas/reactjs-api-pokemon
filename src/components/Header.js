@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Container, Row, Col, Image, Button, Form, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { setNome, setTipo1, setTipo2, setDados, setErro } from '../reducers/pokemonReducers'
@@ -20,8 +19,8 @@ const Header = () => {
     const pesquisarNome = () => {
         dispatch(setErro(''))
         dispatch(setDados([]))
-        if(nome.nome.length < 3){
-            dispatch(setErro('Para procurar pelo nome, precisa de pelo menos 3 caracteres.'))
+        if(nome.nome.length < 2){
+            dispatch(setErro('Para procurar pelo nome, precisa de pelo menos 2 caracteres.'))
         } else {
             fetch('https://pokeapi.co/api/v2/pokemon?limit=1302&offset=0')
                 .then(resp => resp.json())
@@ -42,7 +41,6 @@ const Header = () => {
                 })
         }
     }
-
 
     return(
         <header>
