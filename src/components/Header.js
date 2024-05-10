@@ -23,17 +23,15 @@ const Header = () => {
             dispatch(setErro('Para procurar pelo nome, precisa de pelo menos 2 caracteres.'))
         } else {
             fetch('https://pokeapi.co/api/v2/pokemon?limit=1302&offset=0')
-                .then(resp => resp.json())
-                .then(respDadosGeral => respDadosGeral.results)
-                .then(respDados => {
-                    const nomeFormatado = nome.nome.toLowerCase().trim()
-                    return respDados.filter(pokemon => pokemon.name.includes(nomeFormatado))
-                })
-                .then((respDadosFiltrados) => {
-                    if(respDadosFiltrados.length === 0){
+                .then((resp) => resp.json())
+                .then((respDadosGeral) => respDadosGeral.results)
+                .then((respDados) => respDados.map((pokemon) => pokemon.name))
+                .then((respDadosMap) => respDadosMap.filter((pokemon) => pokemon.includes(nome.nome)))
+                .then((respDadosFiltrado) => {
+                    if(respDadosFiltrado.length === 0){
                         dispatch(setErro('Nenhum Pokémon com essas letras no nome foi encontrado.'))
                     } else {
-                        dispatch(setDados(respDadosFiltrados));
+                        dispatch(setDados(respDadosFiltrado));
                     }
                 })
                 .catch((err) => {
@@ -42,7 +40,7 @@ const Header = () => {
         }
     }
 
-    const pesquisarTipo = () => {
+    const pesquisarTipo = async() => {
         dispatch(setErro(''))
         dispatch(setDados([]))
         if(tipo1.tipo1 === ''){
@@ -50,9 +48,29 @@ const Header = () => {
         } else if(tipo2.tipo2 === '') {
             fetch(`https://pokeapi.co/api/v2/type/${tipo1.tipo1}`)
                 .then((resp) => resp.json())
-                .then((respDados) => respDados.pokemon)
-                .then((respDados2) => dispatch(setDados(respDados2)))
+                .then((respDadosGeral) => respDadosGeral.pokemon)
+                .then((respDados) => respDados.map((pokemon) => pokemon.pokemon.name))
+                .then((respDadosFinal) => dispatch(setDados(respDadosFinal)))
                 .catch((err) => console.log(err))
+        } else {
+            try{
+                const [resp1, resp2] = await Promise.all([
+                    fetch(`https://pokeapi.co/api/v2/type/${tipo1.tipo1}`),
+                    fetch(`https://pokeapi.co/api/v2/type/${tipo2.tipo2}`)
+                ])
+
+                const respDados1 = await resp1.json();
+                const respDados2 = await resp2.json();
+
+                const dadosTipo1Map = respDados1.pokemon.map((pokemon) => pokemon.pokemon.name);
+                const dadosTipo2Map = respDados2.pokemon.map((pokemon) => pokemon.pokemon.name);
+
+                const dadosFinal = dadosTipo1Map.filter((nome) => dadosTipo2Map.includes(nome))
+
+                dispatch(setDados(dadosFinal))
+            } catch (err) {
+                console.error(err);
+            }
         }
     }
 

@@ -13,7 +13,7 @@ const Main = () => {
                 <Row className='text-center'>
                     <Col className='d-flex flex-column'>    
                         {dados.dados && dados.dados.map((pokemon) => (
-                            <PokemonButton marginBottom='mb-1' nome={pokemon.pokemon?.name || pokemon.name} />
+                            <PokemonButton marginBottom='mb-1' nome={pokemon} />
                         ))}
                     </Col>
                     <Col >

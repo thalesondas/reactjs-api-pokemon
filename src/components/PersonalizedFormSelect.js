@@ -9,7 +9,7 @@ const PersonalizedFormSelect= (props) => {
             <option value="water">Água</option>
             <option value="grass">Grama</option>
             <option value="flying">Voador</option>
-            <option value="fighter">Lutador</option>
+            <option value="fighting">Lutador</option>
             <option value="bug">Inseto</option>
             <option value="poison">Veneno</option>
             <option value="electric">Elétrico</option>
