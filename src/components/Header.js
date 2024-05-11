@@ -67,7 +67,11 @@ const Header = () => {
 
                 const dadosFinal = dadosTipo1Map.filter((nome) => dadosTipo2Map.includes(nome))
 
-                dispatch(setDados(dadosFinal))
+                if(dadosFinal.length === 0){
+                    dispatch(setErro('Nenhum Pokémon com essa combinação de tipos foi encontrado.'))
+                } else {
+                    dispatch(setDados(dadosFinal))
+                }
             } catch (err) {
                 console.error(err);
             }
