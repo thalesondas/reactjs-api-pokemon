@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Container, Row, Col, Pagination, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPaginaAtual, setIndexUltimoItem, setItemsAtuais, setIndexPrimeiroItem } from '../reducers/pokemonReducers'
@@ -8,6 +8,7 @@ import '../assets/Main.css'
 const Main = () => {
 
     const dispatch = useDispatch()
+    const [paginas, setPaginas] = useState([]);
 
     const dados = useSelector(state => state.dados)
     const paginacao = useSelector((state) => state.paginacao)
@@ -26,6 +27,18 @@ const Main = () => {
         dispatch(setItemsAtuais(dados.dados.slice(paginacao.indexPrimeiroItem, paginacao.indexUltimoItem + 1)))
     }, [paginacao.indexPrimeiroItem])
 
+    useEffect(() => {
+        const novasPaginas = [];
+        for (let pagina = 1; pagina <= Math.ceil(dados.dados.length / paginacao.itemsPorPagina); pagina++) {
+            novasPaginas.push(
+                <Pagination.Item onClick={() => paginaAtual(pagina)} key={pagina} active={pagina === paginaAtual}>
+                    {pagina}
+                </Pagination.Item>
+            );
+        }
+        setPaginas(novasPaginas);
+    }, [dados.dados]);
+
     return(
         <main>
             <Container className='mb-3 mt-4'>
@@ -38,7 +51,7 @@ const Main = () => {
                         <Pagination className='d-flex justify-content-center mt-2'>
                             <Pagination.First onClick={() => paginaAtual(1)} disabled={paginacao.paginaAtual === 1}/>
                             <Pagination.Prev onClick={() => paginaAtual(paginacao.paginaAtual - 1)} disabled={paginacao.paginaAtual === 1}/>
-                            
+                            {paginas}
                             <Pagination.Next onClick={() => paginaAtual(paginacao.paginaAtual + 1)} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)}/>
                             <Pagination.Last onClick={() => paginaAtual(Math.ceil(dados.dados.length / paginacao.itemsPorPagina))} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)} />
                         </Pagination>
