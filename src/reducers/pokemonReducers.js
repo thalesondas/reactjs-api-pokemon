@@ -1,4 +1,5 @@
 import { createSlice, combineReducers } from '@reduxjs/toolkit';
+import { createContext } from 'react';
 
 const nomeSlice = createSlice({
     name: 'nome',
@@ -40,12 +41,20 @@ const erroSlice = createSlice({
     }
 })
 
+const imagemPokemonSlice = createSlice({
+    name: 'imagemPokemon',
+    initialState: { imagemPokemon: '' },
+    reducers: {
+        setImagemPokemon: (state, action) => { state.imagemPokemon = action.payload }
+    }
+})
+
 const paginacaoSlice = createSlice({
     name: 'paginacao',
     initialState: {
         paginaAtual: 1,
-        itemsPorPagina: 12,
-        indexUltimoItem: 12,
+        itemsPorPagina: 13,
+        indexUltimoItem: 13,
         indexPrimeiroItem: 0,
         itemsAtuais: []
     },
@@ -63,6 +72,7 @@ const rootReducer = combineReducers({
     tipo2: tipo2Slice.reducer,
     dados: dadosSlice.reducer,
     erro: erroSlice.reducer,
+    imagemPokemon: imagemPokemonSlice.reducer,
     paginacao: paginacaoSlice.reducer
 })
 
@@ -71,6 +81,7 @@ export const { setTipo1 } = tipo1Slice.actions;
 export const { setTipo2 } = tipo2Slice.actions;
 export const { setDados } = dadosSlice.actions;
 export const { setErro } = erroSlice.actions;
+export const { setImagemPokemon } = imagemPokemonSlice.actions;
 export const { setPaginaAtual } = paginacaoSlice.actions;
 export const { setIndexUltimoItem } = paginacaoSlice.actions;
 export const { setIndexPrimeiroItem } = paginacaoSlice.actions;
