@@ -6,3 +6,8 @@ main{
     justify-content: center;
     color: white;
 }
+
+.pagination li a{
+    background-color: var(--cor-azul);
+    color: white;
+}

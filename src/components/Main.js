@@ -48,13 +48,15 @@ const Main = () => {
                             <PokemonButton marginBottom='mb-1' nome={pokemon} />
                         ))}
 
-                        <Pagination className='d-flex justify-content-center mt-2'>
-                            <Pagination.First onClick={() => paginaAtual(1)} disabled={paginacao.paginaAtual === 1}/>
-                            <Pagination.Prev onClick={() => paginaAtual(paginacao.paginaAtual - 1)} disabled={paginacao.paginaAtual === 1}/>
-                            {paginas}
-                            <Pagination.Next onClick={() => paginaAtual(paginacao.paginaAtual + 1)} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)}/>
-                            <Pagination.Last onClick={() => paginaAtual(Math.ceil(dados.dados.length / paginacao.itemsPorPagina))} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)} />
-                        </Pagination>
+                        {paginas.length > 0 &&
+                            <Pagination className='d-flex justify-content-center mt-2'>
+                                <Pagination.First onClick={() => paginaAtual(1)} disabled={paginacao.paginaAtual === 1}/>
+                                <Pagination.Prev onClick={() => paginaAtual(paginacao.paginaAtual - 1)} disabled={paginacao.paginaAtual === 1}/>
+                                {paginas}
+                                <Pagination.Next onClick={() => paginaAtual(paginacao.paginaAtual + 1)} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)}/>
+                                <Pagination.Last onClick={() => paginaAtual(Math.ceil(dados.dados.length / paginacao.itemsPorPagina))} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)} />
+                            </Pagination>
+                        }
                     </Col>
                     <Col>
                         <Image style={{ width: 400 }} src={imagemPokemon.imagemPokemon}></Image>
