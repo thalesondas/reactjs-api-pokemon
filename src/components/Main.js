@@ -43,7 +43,7 @@ const Main = () => {
         <main>
             <Container className='mb-3 mt-4'>
                 <Row className='text-center'>
-                    <Col className='d-flex flex-column'>    
+                    <Col className='d-flex flex-column align-items-center'>    
                         {paginacao.itemsAtuais && paginacao.itemsAtuais.map((pokemon) => (
                             <PokemonButton marginBottom='mb-1' nome={pokemon} />
                         ))}

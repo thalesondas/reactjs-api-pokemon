@@ -12,3 +12,8 @@ img{
     background: var(--cor-amarela) !important;
     color: black !important;
 }
+
+.btn:hover{
+    box-shadow: inset -12em 0 0 0 #ebb70f, inset 12em 0 0 0 #ebb70f;
+    text-shadow: 0 0 1px black;
+}

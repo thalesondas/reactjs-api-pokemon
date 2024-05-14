@@ -11,3 +11,7 @@ main{
     background-color: var(--cor-azul);
     color: white;
 }
+
+main .btn{
+    width: 350px;
+}
