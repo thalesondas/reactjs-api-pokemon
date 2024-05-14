@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Container, Row, Col, Pagination, Image } from 'react-bootstrap'
+import { Container, Row, Col, Pagination, Image, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPaginaAtual, setIndexUltimoItem, setItemsAtuais, setIndexPrimeiroItem } from '../reducers/pokemonReducers'
 import PokemonButton from './PokemonButton'
@@ -13,6 +13,7 @@ const Main = () => {
     const dados = useSelector(state => state.dados)
     const paginacao = useSelector((state) => state.paginacao)
     const pokemon =useSelector(state => state.pokemon)
+    const erro = useSelector((state) => state.erro)
 
     const nomePokemonFormatado = pokemon.nomePokemon.charAt(0).toUpperCase() + pokemon.nomePokemon.slice(1)
     const tipo1PokemonFormatado = pokemon.tipo1Pokemon.charAt(0).toUpperCase() + pokemon.tipo1Pokemon.slice(1)
@@ -45,39 +46,44 @@ const Main = () => {
 
     return(
         <main>
-            <Container className='mb-3 mt-4'>
-                <Row className='text-center'>
-                    <Col className='d-flex flex-column align-items-center'>    
-                        {paginacao.itemsAtuais && paginacao.itemsAtuais.map((pokemon) => (
-                            <PokemonButton marginBottom='mb-1' nome={pokemon} />
-                        ))}
+            {erro.erro && <Alert className='alert-sm mt-4' variant='danger'>{erro.erro}</Alert>}
+            {!erro.erro && 
+                <>
+                    <Container className='mb-3 mt-4'>
+                        <Row className='text-center'>
+                            <Col className='d-flex flex-column align-items-center'>    
+                                {paginacao.itemsAtuais && paginacao.itemsAtuais.map((pokemon) => (
+                                    <PokemonButton marginBottom='mb-1' nome={pokemon} />
+                                ))}
 
-                        {paginas.length > 0 &&
-                            <Pagination className='d-flex justify-content-center mt-2'>
-                                <Pagination.First onClick={() => paginaAtual(1)} disabled={paginacao.paginaAtual === 1}/>
-                                <Pagination.Prev onClick={() => paginaAtual(paginacao.paginaAtual - 1)} disabled={paginacao.paginaAtual === 1}/>
-                                {paginas}
-                                <Pagination.Next onClick={() => paginaAtual(paginacao.paginaAtual + 1)} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)}/>
-                                <Pagination.Last onClick={() => paginaAtual(Math.ceil(dados.dados.length / paginacao.itemsPorPagina))} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)} />
-                            </Pagination>
-                        }
-                    </Col>
-                    <Col>
-                        <h1>{nomePokemonFormatado}</h1>
-                        <Image className='mx-auto img-pokemon' src={pokemon.imagemPokemon}></Image>
-                        {pokemon.tipo1Pokemon &&
-                            <div className={`div-pokemon ${pokemon.tipo1Pokemon}`}>
-                                <span>{tipo1PokemonFormatado}</span>
-                            </div>
-                        }
-                        {pokemon.tipo2Pokemon && 
-                            <div className={`div-pokemon ms-4 ${pokemon.tipo2Pokemon}`}>
-                                <span>{tipo2PokemonFormatado}</span>
-                            </div>
-                        }
-                    </Col>
-                </Row>
-            </Container>
+                                {paginas.length > 0 &&
+                                    <Pagination className='d-flex justify-content-center mt-2'>
+                                        <Pagination.First onClick={() => paginaAtual(1)} disabled={paginacao.paginaAtual === 1}/>
+                                        <Pagination.Prev onClick={() => paginaAtual(paginacao.paginaAtual - 1)} disabled={paginacao.paginaAtual === 1}/>
+                                        {paginas}
+                                        <Pagination.Next onClick={() => paginaAtual(paginacao.paginaAtual + 1)} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)}/>
+                                        <Pagination.Last onClick={() => paginaAtual(Math.ceil(dados.dados.length / paginacao.itemsPorPagina))} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)} />
+                                    </Pagination>
+                                }
+                            </Col>
+                            <Col>
+                                <h1>{nomePokemonFormatado}</h1>
+                                <Image className='mx-auto img-pokemon' src={pokemon.imagemPokemon}></Image>
+                                {pokemon.tipo1Pokemon &&
+                                    <div className={`div-pokemon ${pokemon.tipo1Pokemon}`}>
+                                        <span>{tipo1PokemonFormatado}</span>
+                                    </div>
+                                }
+                                {pokemon.tipo2Pokemon && 
+                                    <div className={`div-pokemon ms-4 ${pokemon.tipo2Pokemon}`}>
+                                        <span>{tipo2PokemonFormatado}</span>
+                                    </div>
+                                }
+                            </Col>
+                        </Row>
+                    </Container>
+                </>
+            }
         </main>
     )
 }

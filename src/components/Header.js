@@ -1,4 +1,4 @@
-import { Container, Row, Col, Image, Button, Form, Alert } from 'react-bootstrap'
+import { Container, Row, Col, Image, Button, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { setNome, setTipo1, setTipo2, setDados, setErro, setPaginaAtual, setIndexUltimoItem ,setIndexPrimeiroItem, setItemsAtuais } from '../reducers/pokemonReducers'
 import PersonalizedFormSelect from './PersonalizedFormSelect'
@@ -12,7 +12,6 @@ const Header = () => {
     const nome = useSelector((state) => state.nome)
     const tipo1 = useSelector((state) => state.tipo1)
     const tipo2 = useSelector((state) => state.tipo2)
-    const erro = useSelector((state) => state.erro)
 
     const pesquisarNome = () => {
         dispatch(setErro(''))
@@ -116,7 +115,6 @@ const Header = () => {
                         <Button onClick={pesquisarNome}>Pesquisar pelo nome</Button>
                     </Col>
                 </Row>
-                {erro.erro && <Alert className='alert-sm mt-4' variant='danger'>{erro.erro}</Alert>}
             </Container>
         </header>
     )
