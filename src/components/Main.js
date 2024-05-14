@@ -64,9 +64,17 @@ const Main = () => {
                     </Col>
                     <Col>
                         <h1>{nomePokemonFormatado}</h1>
-                        <Image style={{ width: 400 }} src={pokemon.imagemPokemon}></Image>
-                        <p>{tipo1PokemonFormatado}</p>
-                        <p>{tipo2PokemonFormatado}</p>
+                        <Image className='mx-auto img-pokemon' src={pokemon.imagemPokemon}></Image>
+                        {pokemon.tipo1Pokemon &&
+                            <div className={`div-pokemon ${pokemon.tipo1Pokemon}`}>
+                                <span>{tipo1PokemonFormatado}</span>
+                            </div>
+                        }
+                        {pokemon.tipo2Pokemon && 
+                            <div className={`div-pokemon ms-4 ${pokemon.tipo2Pokemon}`}>
+                                <span>{tipo2PokemonFormatado}</span>
+                            </div>
+                        }
                     </Col>
                 </Row>
             </Container>
