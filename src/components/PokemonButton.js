@@ -1,4 +1,4 @@
-import { setImagemPokemon } from '../reducers/pokemonReducers'
+import { setImagemPokemon, setNomePokemon, setTipo1Pokemon, setTipo2Pokemon } from '../reducers/pokemonReducers'
 import { useDispatch } from 'react-redux'
 import { Button } from 'react-bootstrap'
 
@@ -11,8 +11,13 @@ const PokemonButton = (props) => {
     const escolherPokemon = (nome) => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${nome}/`)
             .then(resp => resp.json())
-            .then(resp => resp.sprites.front_default)
-            .then(resp => dispatch(setImagemPokemon(resp)))
+            .then(dados => {
+                console.log(dados)
+                dispatch(setImagemPokemon(dados.sprites.front_default))
+                dispatch(setNomePokemon(dados.name))
+                dispatch(setTipo1Pokemon(dados.types[0].type.name))
+                dispatch(setTipo2Pokemon(dados.types[1] ? dados.types[1].type.name : ''))
+            })
             .catch(err => console.log(err))
     }
 

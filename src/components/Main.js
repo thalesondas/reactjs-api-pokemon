@@ -12,7 +12,11 @@ const Main = () => {
 
     const dados = useSelector(state => state.dados)
     const paginacao = useSelector((state) => state.paginacao)
-    const imagemPokemon = useSelector(state => state.imagemPokemon)
+    const pokemon =useSelector(state => state.pokemon)
+
+    const nomePokemonFormatado = pokemon.nomePokemon.charAt(0).toUpperCase() + pokemon.nomePokemon.slice(1)
+    const tipo1PokemonFormatado = pokemon.tipo1Pokemon.charAt(0).toUpperCase() + pokemon.tipo1Pokemon.slice(1)
+    const tipo2PokemonFormatado = pokemon.tipo2Pokemon ? pokemon.tipo2Pokemon.charAt(0).toUpperCase() + pokemon.tipo2Pokemon.slice(1) : ''
 
     const paginaAtual = (pagina) => {
         dispatch(setPaginaAtual(pagina))
@@ -59,7 +63,10 @@ const Main = () => {
                         }
                     </Col>
                     <Col>
-                        <Image style={{ width: 400 }} src={imagemPokemon.imagemPokemon}></Image>
+                        <h1>{nomePokemonFormatado}</h1>
+                        <Image style={{ width: 400 }} src={pokemon.imagemPokemon}></Image>
+                        <p>{tipo1PokemonFormatado}</p>
+                        <p>{tipo2PokemonFormatado}</p>
                     </Col>
                 </Row>
             </Container>

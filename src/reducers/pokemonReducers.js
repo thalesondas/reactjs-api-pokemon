@@ -1,5 +1,4 @@
 import { createSlice, combineReducers } from '@reduxjs/toolkit';
-import { createContext } from 'react';
 
 const nomeSlice = createSlice({
     name: 'nome',
@@ -41,10 +40,17 @@ const erroSlice = createSlice({
     }
 })
 
-const imagemPokemonSlice = createSlice({
-    name: 'imagemPokemon',
-    initialState: { imagemPokemon: '' },
+const pokemonSlice = createSlice({
+    name: 'pokemon',
+    initialState: { 
+        nomePokemon: '',
+        tipo1Pokemon: '',
+        tipo2Pokemon: '',
+        imagemPokemon: '' },
     reducers: {
+        setNomePokemon: (state, action) => { state.nomePokemon = action.payload },
+        setTipo1Pokemon: (state, action) => { state.tipo1Pokemon = action.payload },
+        setTipo2Pokemon: (state, action) => { state.tipo2Pokemon = action.payload },
         setImagemPokemon: (state, action) => { state.imagemPokemon = action.payload }
     }
 })
@@ -72,7 +78,7 @@ const rootReducer = combineReducers({
     tipo2: tipo2Slice.reducer,
     dados: dadosSlice.reducer,
     erro: erroSlice.reducer,
-    imagemPokemon: imagemPokemonSlice.reducer,
+    pokemon: pokemonSlice.reducer,
     paginacao: paginacaoSlice.reducer
 })
 
@@ -81,7 +87,10 @@ export const { setTipo1 } = tipo1Slice.actions;
 export const { setTipo2 } = tipo2Slice.actions;
 export const { setDados } = dadosSlice.actions;
 export const { setErro } = erroSlice.actions;
-export const { setImagemPokemon } = imagemPokemonSlice.actions;
+export const { setNomePokemon } = pokemonSlice.actions;
+export const { setTipo1Pokemon } = pokemonSlice.actions;
+export const { setTipo2Pokemon } = pokemonSlice.actions;
+export const { setImagemPokemon } = pokemonSlice.actions;
 export const { setPaginaAtual } = paginacaoSlice.actions;
 export const { setIndexUltimoItem } = paginacaoSlice.actions;
 export const { setIndexPrimeiroItem } = paginacaoSlice.actions;
