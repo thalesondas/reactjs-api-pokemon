@@ -61,6 +61,35 @@ const Header = () => {
                     dispatch(setItemsAtuais(respDadosFinal.slice(0, 13)))
                 })
                 .catch((err) => console.log(err))
+        } else if(tipo1.tipo1 === tipo2.tipo2){
+            try{
+                const pokemonFiltrado= []
+
+                const resp = await fetch(`https://pokeapi.co/api/v2/type/${tipo1.tipo1}`)
+                const dados = await resp.json()
+                const pokemon = dados.pokemon
+
+                await Promise.all(
+                    pokemon.map(async (pokemon) => {
+                        const url = pokemon.pokemon.url;
+                        const respLoop = await fetch(url);
+                        const dadosLoop = await respLoop.json();
+
+                        if(dadosLoop.types.length === 1){
+                            pokemonFiltrado.push(dadosLoop.name)
+                        }
+                    })
+                )
+
+                dispatch(setDados(pokemonFiltrado))
+                dispatch(setPaginaAtual(1))
+                dispatch(setIndexUltimoItem(12))
+                dispatch(setIndexPrimeiroItem(0))
+                dispatch(setItemsAtuais(pokemonFiltrado.slice(0, 13)))
+            }
+            catch (err) {
+                console.log(err)
+            }               
         } else {
             try{
                 const [resp1, resp2] = await Promise.all([
