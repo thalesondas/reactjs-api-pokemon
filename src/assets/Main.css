@@ -7,13 +7,21 @@ main{
     color: white;
 }
 
+.pagination .active{
+    --bs-pagination-active-bg: #25569d;
+}
+
+.pagination .disabled{
+    --bs-pagination-disabled-bg: #959393;
+}
+
 .pagination li a{
     background-color: var(--cor-azul);
     color: white;
 }
 
 .img-pokemon{
-    width: 400px;
+    width: 380px;
     display: block;
 }
 

@@ -36,13 +36,13 @@ const Main = () => {
         const novasPaginas = [];
         for (let pagina = 1; pagina <= Math.ceil((dados.dados.length - 1) / paginacao.itemsPorPagina); pagina++) {
             novasPaginas.push(
-                <Pagination.Item onClick={() => paginaAtual(pagina)} key={pagina} active={pagina === paginaAtual}>
+                <Pagination.Item onClick={() => paginaAtual(pagina)} key={pagina} active={pagina === paginacao.paginaAtual}>
                     {pagina}
                 </Pagination.Item>
             );
         }
         setPaginas(novasPaginas);
-    }, [dados.dados]);
+    }, [paginacao.itemsAtuais]);
 
     return(
         <main>
@@ -50,21 +50,11 @@ const Main = () => {
             {!erro.erro && 
                 <>
                     <Container className='mb-3 mt-4'>
-                        <Row className='text-center'>
-                            <Col className='d-flex flex-column align-items-center'>    
+                        <Row className='text-center' style={{ height: '540px' }}>
+                            <Col className='d-flex flex-column align-items-center justify-content-center'>
                                 {paginacao.itemsAtuais && paginacao.itemsAtuais.map((pokemon) => (
                                     <PokemonButton marginBottom='mb-1' nome={pokemon} />
                                 ))}
-
-                                {paginas.length > 0 &&
-                                    <Pagination className='d-flex justify-content-center mt-2'>
-                                        <Pagination.First onClick={() => paginaAtual(1)} disabled={paginacao.paginaAtual === 1}/>
-                                        <Pagination.Prev onClick={() => paginaAtual(paginacao.paginaAtual - 1)} disabled={paginacao.paginaAtual === 1}/>
-                                        {paginas}
-                                        <Pagination.Next onClick={() => paginaAtual(paginacao.paginaAtual + 1)} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)}/>
-                                        <Pagination.Last onClick={() => paginaAtual(Math.ceil(dados.dados.length / paginacao.itemsPorPagina))} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)} />
-                                    </Pagination>
-                                }
                             </Col>
                             <Col>
                                 <h1>{nomePokemonFormatado}</h1>
@@ -81,6 +71,15 @@ const Main = () => {
                                 }
                             </Col>
                         </Row>
+                        {paginas.length > 0 &&
+                            <Pagination className='d-flex justify-content-center mt-3'>
+                                <Pagination.First onClick={() => paginaAtual(1)} disabled={paginacao.paginaAtual === 1}/>
+                                <Pagination.Prev onClick={() => paginaAtual(paginacao.paginaAtual - 1)} disabled={paginacao.paginaAtual === 1}/>
+                                {paginas}
+                                <Pagination.Next onClick={() => paginaAtual(paginacao.paginaAtual + 1)} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)}/>
+                                <Pagination.Last onClick={() => paginaAtual(Math.ceil(dados.dados.length / paginacao.itemsPorPagina))} disabled={paginacao.paginaAtual === Math.ceil(dados.dados.length / paginacao.itemsPorPagina)} />
+                            </Pagination>
+                        }
                     </Container>
                 </>
             }
