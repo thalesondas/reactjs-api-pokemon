@@ -94,7 +94,7 @@ const Header = () => {
 
     return(
         <header>
-            <Container>
+            <Container fluid>
                 <Row>
                     <Col>
                         <Image src={PokeApiLogo} alt='PokéAPI Logo'/>™

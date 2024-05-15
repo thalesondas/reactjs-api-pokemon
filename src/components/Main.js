@@ -34,7 +34,7 @@ const Main = () => {
 
     useEffect(() => {
         const novasPaginas = [];
-        for (let pagina = 1; pagina <= Math.ceil(dados.dados.length / paginacao.itemsPorPagina); pagina++) {
+        for (let pagina = 1; pagina <= Math.ceil((dados.dados.length - 1) / paginacao.itemsPorPagina); pagina++) {
             novasPaginas.push(
                 <Pagination.Item onClick={() => paginaAtual(pagina)} key={pagina} active={pagina === paginaAtual}>
                     {pagina}
