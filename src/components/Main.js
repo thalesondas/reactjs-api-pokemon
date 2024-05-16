@@ -9,6 +9,7 @@ const Main = () => {
 
     const dispatch = useDispatch()
     const [paginas, setPaginas] = useState([]);
+    const [animation, setAnimation] = useState('')
 
     const dados = useSelector(state => state.dados)
     const paginacao = useSelector((state) => state.paginacao)
@@ -44,6 +45,13 @@ const Main = () => {
         setPaginas(novasPaginas);
     }, [paginacao.itemsAtuais]);
 
+    useEffect(() => {
+        setAnimation('fade-left')
+        setTimeout(() => {
+            setAnimation('')
+        }, 900)
+    }, [pokemon.imagemPokemon])
+
     return(
         <main>
             {erro.erro && <Alert className='alert-sm mt-4' variant='danger'>{erro.erro}</Alert>}
@@ -57,18 +65,20 @@ const Main = () => {
                                 ))}
                             </Col>
                             <Col>
-                                <h1>{nomePokemonFormatado}</h1>
-                                <Image className='mx-auto img-pokemon' src={pokemon.imagemPokemon}></Image>
-                                {pokemon.tipo1Pokemon &&
-                                    <div className={`div-pokemon ${pokemon.tipo1Pokemon}`}>
-                                        <span>{tipo1PokemonFormatado}</span>
-                                    </div>
-                                }
-                                {pokemon.tipo2Pokemon && 
-                                    <div className={`div-pokemon ms-4 ${pokemon.tipo2Pokemon}`}>
-                                        <span>{tipo2PokemonFormatado}</span>
-                                    </div>
-                                }
+                                <div className={`${animation} teste`}>
+                                    <h1>{nomePokemonFormatado}</h1>
+                                    <Image className='mx-auto img-pokemon' src={pokemon.imagemPokemon}></Image>
+                                    {pokemon.tipo1Pokemon &&
+                                        <div className={`div-pokemon ${pokemon.tipo1Pokemon}`}>
+                                            <span>{tipo1PokemonFormatado}</span>
+                                        </div>
+                                    }
+                                    {pokemon.tipo2Pokemon && 
+                                        <div className={`div-pokemon ms-4 ${pokemon.tipo2Pokemon}`}>
+                                            <span>{tipo2PokemonFormatado}</span>
+                                        </div>
+                                    }
+                                </div>
                             </Col>
                         </Row>
                         {paginas.length > 0 &&
