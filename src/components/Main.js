@@ -8,19 +8,20 @@ import '../assets/Main.css'
 const Main = () => {
 
     const dispatch = useDispatch()
+
     const [paginas, setPaginas] = useState([]);
     const [animation, setAnimation] = useState('')
 
     const dados = useSelector(state => state.dados)
-    const paginacao = useSelector((state) => state.paginacao)
+    const paginacao = useSelector(state => state.paginacao)
     const pokemon =useSelector(state => state.pokemon)
-    const erro = useSelector((state) => state.erro)
+    const erro = useSelector(state => state.erro)
 
     const nomePokemonFormatado = pokemon.nomePokemon.charAt(0).toUpperCase() + pokemon.nomePokemon.slice(1)
     const tipo1PokemonFormatado = pokemon.tipo1Pokemon.charAt(0).toUpperCase() + pokemon.tipo1Pokemon.slice(1)
     const tipo2PokemonFormatado = pokemon.tipo2Pokemon ? pokemon.tipo2Pokemon.charAt(0).toUpperCase() + pokemon.tipo2Pokemon.slice(1) : ''
 
-    const paginaAtual = (pagina) => {
+    const paginaAtual = pagina => {
         dispatch(setPaginaAtual(pagina))
     }
     useEffect(() => {
@@ -65,7 +66,7 @@ const Main = () => {
                                 ))}
                             </Col>
                             <Col>
-                                <div className={`${animation} teste`}>
+                                <div className={`${animation}`}>
                                     <h1>{nomePokemonFormatado}</h1>
                                     <Image className='mx-auto img-pokemon' src={pokemon.imagemPokemon}></Image>
                                     {pokemon.tipo1Pokemon &&
