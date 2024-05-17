@@ -58,9 +58,9 @@ const pokemonSlice = createSlice({
 const paginacaoSlice = createSlice({
     name: 'paginacao',
     initialState: {
-        paginaAtual: 1,
+        paginaAtual: 0,
         itemsPorPagina: 13,
-        indexUltimoItem: 13,
+        indexUltimoItem: 0,
         indexPrimeiroItem: 0,
         itemsAtuais: []
     },

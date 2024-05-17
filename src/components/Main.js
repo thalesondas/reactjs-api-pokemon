@@ -3,6 +3,7 @@ import { Container, Row, Col, Pagination, Image, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPaginaAtual, setIndexUltimoItem, setItemsAtuais, setIndexPrimeiroItem } from '../reducers/pokemonReducers'
 import PokemonButton from './PokemonButton'
+import PikachuGif from '../images/pikachu-gif.gif'
 import '../assets/Main.css'
 
 const Main = () => {
@@ -14,7 +15,7 @@ const Main = () => {
 
     const dados = useSelector(state => state.dados)
     const paginacao = useSelector(state => state.paginacao)
-    const pokemon =useSelector(state => state.pokemon)
+    const pokemon = useSelector(state => state.pokemon)
     const erro = useSelector(state => state.erro)
 
     const nomePokemonFormatado = pokemon.nomePokemon.charAt(0).toUpperCase() + pokemon.nomePokemon.slice(1)
@@ -55,8 +56,11 @@ const Main = () => {
 
     return(
         <main>
+            {!erro.erro && paginacao.paginaAtual === 0 &&
+                <Image className='img-pikachu' src={PikachuGif} alt='Pikachu Gif' />
+            }
             {erro.erro && <Alert className='alert-sm mt-4' variant='danger'>{erro.erro}</Alert>}
-            {!erro.erro && 
+            {!erro.erro && paginacao.paginaAtual !== 0 &&
                 <>
                     <Container className='mb-3 mt-4'>
                         <Row className='text-center' style={{ height: '540px' }}>
