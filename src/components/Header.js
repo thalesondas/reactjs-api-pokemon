@@ -31,7 +31,7 @@ const Header = () => {
                     } else {
                         dispatch(setDados(respDadosFiltrado));
                         dispatch(setPaginaAtual(1))
-                        dispatch(setIndexUltimoItem(12))
+                        dispatch(setIndexUltimoItem(13))
                         dispatch(setIndexPrimeiroItem(0))
                         dispatch(setItemsAtuais(respDadosFiltrado.slice(0, 13)))
                     }
@@ -56,7 +56,7 @@ const Header = () => {
                 .then(respDadosFinal => {
                     dispatch(setDados(respDadosFinal))
                     dispatch(setPaginaAtual(1))
-                    dispatch(setIndexUltimoItem(12))
+                    dispatch(setIndexUltimoItem(13))
                     dispatch(setIndexPrimeiroItem(0))
                     dispatch(setItemsAtuais(respDadosFinal.slice(0, 13)))
                 })
@@ -83,7 +83,7 @@ const Header = () => {
 
                 dispatch(setDados(pokemonFiltrado))
                 dispatch(setPaginaAtual(1))
-                dispatch(setIndexUltimoItem(12))
+                dispatch(setIndexUltimoItem(13))
                 dispatch(setIndexPrimeiroItem(0))
                 dispatch(setItemsAtuais(pokemonFiltrado.slice(0, 13)))
             }
@@ -111,7 +111,7 @@ const Header = () => {
                 } else {
                     dispatch(setDados(dadosFinal))
                     dispatch(setPaginaAtual(1))
-                    dispatch(setIndexUltimoItem(12))
+                    dispatch(setIndexUltimoItem(13))
                     dispatch(setIndexPrimeiroItem(0))
                     dispatch(setItemsAtuais(dadosFinal.slice(0, 13)))
                 }

@@ -28,10 +28,10 @@ const Main = () => {
         dispatch(setIndexUltimoItem(paginacao.paginaAtual * paginacao.itemsPorPagina))
     }, [paginacao.paginaAtual])
     useEffect(() => {
-        dispatch(setIndexPrimeiroItem(paginacao.indexUltimoItem - paginacao.itemsPorPagina + 1))
+        dispatch(setIndexPrimeiroItem(paginacao.indexUltimoItem - paginacao.itemsPorPagina))
     }, [paginacao.indexUltimoItem])
     useEffect(() => {
-        dispatch(setItemsAtuais(dados.dados.slice(paginacao.indexPrimeiroItem, paginacao.indexUltimoItem + 1)))
+        dispatch(setItemsAtuais(dados.dados.slice(paginacao.indexPrimeiroItem, paginacao.indexUltimoItem)))
     }, [paginacao.indexPrimeiroItem])
 
     useEffect(() => {
