@@ -1,6 +1,6 @@
 import { Container, Row, Col, Image, Button, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { setNome, setTipo1, setTipo2, setDados, setErro, setPaginaAtual, setIndexUltimoItem, setIndexPrimeiroItem, setItemsAtuais } from '../reducers/pokemonReducers'
+import { setNome, setTipo1, setTipo2, setDados, setErro, setPaginaAtual, setIndexUltimoItem, setIndexPrimeiroItem, setItemsAtuais } from '../redux/pokemonSlicers'
 import PersonalizedFormSelect from './PersonalizedFormSelect'
 import PokeApiLogo from '../images/pokeapi_logo.png'
 import '../assets/Header.css'
@@ -9,14 +9,12 @@ const Header = () => {
 
     const dispatch = useDispatch()
 
-    const nome = useSelector(state => state.nome)
-    const tipo1 = useSelector(state => state.tipo1)
-    const tipo2 = useSelector(state => state.tipo2)
+    const pesquisa = useSelector(state => state.pesquisa)
 
     const pesquisarNome = () => {
         dispatch(setErro(''))
         dispatch(setDados([]))
-        if(nome.nome.length < 2){
+        if(pesquisa.nome.length < 2){
             dispatch(setErro('Para procurar pelo nome, precisa de pelo menos 2 caracteres.'))
             dispatch(setItemsAtuais([]))
         } else {
@@ -24,7 +22,7 @@ const Header = () => {
                 .then(resp => resp.json())
                 .then(respDadosGeral => respDadosGeral.results)
                 .then(respDados => respDados.map(pokemon => pokemon.name))
-                .then(respDadosMap => respDadosMap.filter(pokemon => pokemon.includes(nome.nome)))
+                .then(respDadosMap => respDadosMap.filter(pokemon => pokemon.includes(pesquisa.nome)))
                 .then(respDadosFiltrado => {
                     if(respDadosFiltrado.length === 0){
                         dispatch(setErro('Nenhum Pokémon com essas letras no nome foi encontrado.'))
@@ -45,11 +43,11 @@ const Header = () => {
     const pesquisarTipo = async() => {
         dispatch(setErro(''))
         dispatch(setDados([]))
-        if(tipo1.tipo1 === ''){
+        if(pesquisa.tipo1 === ''){
             dispatch(setErro('Pelo menos o 1º tipo tem que ser escolhido.'))
             dispatch(setItemsAtuais([]))
-        } else if(tipo2.tipo2 === '') {
-            fetch(`https://pokeapi.co/api/v2/type/${tipo1.tipo1}`)
+        } else if(pesquisa.tipo2 === '') {
+            fetch(`https://pokeapi.co/api/v2/type/${pesquisa.tipo1}`)
                 .then(resp => resp.json())
                 .then(respDadosGeral => respDadosGeral.pokemon)
                 .then(respDados => respDados.map(pokemon => pokemon.pokemon.name))
@@ -61,11 +59,11 @@ const Header = () => {
                     dispatch(setItemsAtuais(respDadosFinal.slice(0, 13)))
                 })
                 .catch(err => console.log(err))
-        } else if(tipo1.tipo1 === tipo2.tipo2){
+        } else if(pesquisa.tipo1 === pesquisa.tipo2){
             try{
                 const pokemonFiltrado= []
 
-                const resp = await fetch(`https://pokeapi.co/api/v2/type/${tipo1.tipo1}`)
+                const resp = await fetch(`https://pokeapi.co/api/v2/type/${pesquisa.tipo1}`)
                 const dados = await resp.json()
                 const pokemon = dados.pokemon
 
@@ -93,8 +91,8 @@ const Header = () => {
         } else {
             try{
                 const [resp1, resp2] = await Promise.all([
-                    fetch(`https://pokeapi.co/api/v2/type/${tipo1.tipo1}`),
-                    fetch(`https://pokeapi.co/api/v2/type/${tipo2.tipo2}`)
+                    fetch(`https://pokeapi.co/api/v2/type/${pesquisa.tipo1}`),
+                    fetch(`https://pokeapi.co/api/v2/type/${pesquisa.tipo2}`)
                 ])
 
                 const respDados1 = await resp1.json();

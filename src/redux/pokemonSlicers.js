@@ -1,29 +1,5 @@
 import { createSlice, combineReducers } from '@reduxjs/toolkit';
 
-const nomeSlice = createSlice({
-    name: 'nome',
-    initialState: { nome: '' },
-    reducers: {
-        setNome: (state, action) => { state.nome = action.payload }
-    }
-})
-
-const tipo1Slice = createSlice({
-    name: 'tipo1',
-    initialState: { tipo1: '' },
-    reducers: {
-        setTipo1: (state, action) => { state.tipo1 = action.payload }
-    }
-})
-
-const tipo2Slice = createSlice({
-    name: 'tipo2',
-    initialState: { tipo2: '' },
-    reducers: {
-        setTipo2: (state, action) => { state.tipo2 = action.payload }
-    }
-})
-
 const dadosSlice = createSlice({
     name: 'dados',
     initialState: { dados: [] },
@@ -37,6 +13,20 @@ const erroSlice = createSlice({
     initialState: { erro: '' },
     reducers: {
         setErro: (state, action) => { state.erro = action.payload }
+    }
+})
+
+const pesquisaSlice = createSlice({
+    name: 'pesquisa',
+    initialState:{
+        nome: '',
+        tipo1: '',
+        tipo2: ''
+    },
+    reducers: {
+        setNome: (state, action) => { state.nome = action.payload },
+        setTipo1: (state, action) => { state.tipo1 = action.payload },
+        setTipo2: (state, action) => { state.tipo2 = action.payload }
     }
 })
 
@@ -73,20 +63,18 @@ const paginacaoSlice = createSlice({
 })
 
 const rootReducer = combineReducers({
-    nome: nomeSlice.reducer,
-    tipo1: tipo1Slice.reducer,
-    tipo2: tipo2Slice.reducer,
     dados: dadosSlice.reducer,
     erro: erroSlice.reducer,
+    pesquisa: pesquisaSlice.reducer,
     pokemon: pokemonSlice.reducer,
     paginacao: paginacaoSlice.reducer
 })
 
-export const { setNome } = nomeSlice.actions;
-export const { setTipo1 } = tipo1Slice.actions;
-export const { setTipo2 } = tipo2Slice.actions;
 export const { setDados } = dadosSlice.actions;
 export const { setErro } = erroSlice.actions;
+export const { setNome } = pesquisaSlice.actions;
+export const { setTipo1 } = pesquisaSlice.actions;
+export const { setTipo2 } = pesquisaSlice.actions;
 export const { setNomePokemon } = pokemonSlice.actions;
 export const { setTipo1Pokemon } = pokemonSlice.actions;
 export const { setTipo2Pokemon } = pokemonSlice.actions;

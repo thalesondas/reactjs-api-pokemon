@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Container, Row, Col, Pagination, Image, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { setPaginaAtual, setIndexUltimoItem, setItemsAtuais, setIndexPrimeiroItem } from '../reducers/pokemonReducers'
+import { setPaginaAtual, setIndexUltimoItem, setItemsAtuais, setIndexPrimeiroItem } from '../redux/pokemonSlicers'
 import PokemonButton from './PokemonButton'
 import PikachuGif from '../images/pikachu-gif.gif'
 import '../assets/Main.css'

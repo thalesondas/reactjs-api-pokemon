@@ -1,4 +1,4 @@
-import { setImagemPokemon, setNomePokemon, setTipo1Pokemon, setTipo2Pokemon } from '../reducers/pokemonReducers'
+import { setImagemPokemon, setNomePokemon, setTipo1Pokemon, setTipo2Pokemon } from '../redux/pokemonSlicers'
 import { useDispatch } from 'react-redux'
 import { Button } from 'react-bootstrap'
 
