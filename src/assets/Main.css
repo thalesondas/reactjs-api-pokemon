@@ -1,6 +1,6 @@
 main{
     background: linear-gradient(150deg, var(--cor-amarela), var(--cor-azul));
-    min-height: 82vh;
+    height: 82vh;
     display: flex;
     align-items: center;
     justify-content: center;

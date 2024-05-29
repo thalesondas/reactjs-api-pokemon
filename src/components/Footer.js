@@ -4,7 +4,7 @@ import '../assets/Footer.css'
 
 const Footer = () => {
     return(
-        <footer>
+        <footer className='d-flex justify-content-center align-items-center'>
             <Image src={PokeApiLogo} alt='PokéAPI Logo'/>™
         </footer>
     )

@@ -120,7 +120,7 @@ const Header = () => {
     }
 
     return(
-        <header>
+        <header className='d-flex justify-content-center align-items-center'>
             <Container fluid>
                 <Row>
                     <Col>
