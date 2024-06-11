@@ -1,4 +1,4 @@
-header{
+.navbar{
     height: 10vh;
     background: linear-gradient(to right, var(--cor-amarela), var(--cor-azul));
     border-bottom: 2px solid black;
@@ -17,4 +17,25 @@ img{
     box-shadow: inset -12em 0 0 0 #ebb70f, inset 12em 0 0 0 #ebb70f;
     transition: 0.5s ease-in-out;
     text-shadow: 0 0 1px black;
+}
+
+@media (max-width: 768px) {
+    .navbar-collapse {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to right, var(--cor-amarela), var(--cor-azul));
+        z-index: 5;
+        height: 100vh;
+    }
+
+    .navbar-toggler {
+        z-index: 6;
+    }
+
+    .navbar-brand {
+        z-index: 6;
+    }
 }

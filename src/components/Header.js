@@ -1,4 +1,4 @@
-import { Container, Row, Col, Image, Button, Form } from 'react-bootstrap'
+import { Container, Row, Col, Image, Button, Form, Navbar, Nav } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { setNome, setTipo1, setTipo2, setDados, setErro, setPaginaAtual, setIndexUltimoItem, setIndexPrimeiroItem, setItemsAtuais } from '../redux/pokemonSlicers'
 import PersonalizedFormSelect from './PersonalizedFormSelect'
@@ -120,30 +120,31 @@ const Header = () => {
     }
 
     return(
-        <header className='d-flex justify-content-center align-items-center'>
-            <Container fluid>
-                <Row>
-                    <Col>
-                        <Image src={PokeApiLogo} alt='PokéAPI Logo'/>™
+        <Navbar expand="md" className='d-flex justify-content-between align-items-center'>
+            <Navbar.Brand className='ms-4 me-lg-5 me-md-3'>
+                <Image src={PokeApiLogo} alt='PokéAPI Logo' />
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' className='me-4'/>
+            <Navbar.Collapse id='basic-navbar-nav'>
+                <Nav className='d-flex justify-content-between align-items-center w-100 ms-lg-5 ms-md-4'>
+                    <Col className='mx-2 mt-5 mt-md-0'>
+                        <PersonalizedFormSelect funcao={e => dispatch(setTipo1(e.target.value))} texto='Escolha o 1º tipo' />
                     </Col>
-                    <Col>
-                        <PersonalizedFormSelect funcao={e => dispatch(setTipo1(e.target.value))} texto='Escolha o 1º tipo'/>
+                    <Col className='mx-2 mt-1 mt-md-0'>
+                        <PersonalizedFormSelect funcao={e => dispatch(setTipo2(e.target.value))} texto='Escolha o 2º tipo' />
                     </Col>
-                    <Col>
-                        <PersonalizedFormSelect funcao={e => dispatch(setTipo2(e.target.value))} texto='Escolha o 2º tipo'/>
-                    </Col>
-                    <Col>
+                    <Col className='mx-2 my-1 mt-2 mt-md-1'>
                         <Button onClick={pesquisarTipo}>Pesquisar pelo tipo</Button>
                     </Col>
-                    <Col>
+                    <Col className='mx-2 mt-5 mt-md-0'>
                         <Form.Control onChange={e => dispatch(setNome(e.target.value))} type="text" placeholder="Procure pelo nome"/>
                     </Col>
-                    <Col>
+                    <Col className='mx-2 my-1 mt-2 mt-md-1'>
                         <Button onClick={pesquisarNome}>Pesquisar pelo nome</Button>
                     </Col>
-                </Row>
-            </Container>
-        </header>
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
     )
 }
 
