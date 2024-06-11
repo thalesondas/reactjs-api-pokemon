@@ -1,15 +1,16 @@
-import { Container, Row, Col, Image, Button, Form, Navbar, Nav } from 'react-bootstrap'
+import { Col, Image, Button, Form, Navbar, Nav } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { setNome, setTipo1, setTipo2, setDados, setErro, setPaginaAtual, setIndexUltimoItem, setIndexPrimeiroItem, setItemsAtuais } from '../redux/pokemonSlicers'
 import PersonalizedFormSelect from './PersonalizedFormSelect'
 import PokeApiLogo from '../images/pokeapi_logo.png'
 import '../assets/Header.css'
+import { useState } from 'react'
 
 const Header = () => {
 
     const dispatch = useDispatch()
-
     const pesquisa = useSelector(state => state.pesquisa)
+    const [navbarAberta, setNavbarAberta] = useState(false)
 
     const pesquisarNome = () => {
         dispatch(setErro(''))
@@ -120,11 +121,11 @@ const Header = () => {
     }
 
     return(
-        <Navbar expand="md" className='d-flex justify-content-between align-items-center'>
+        <Navbar expand="md" expanded={navbarAberta} className='d-flex justify-content-between align-items-center'>
             <Navbar.Brand className='ms-4 me-lg-5 me-md-3'>
                 <Image src={PokeApiLogo} alt='PokéAPI Logo' />
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls='basic-navbar-nav' className='me-4'/>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' className='me-4' onClick={() => setNavbarAberta(!navbarAberta)}/>
             <Navbar.Collapse id='basic-navbar-nav'>
                 <Nav className='d-flex justify-content-between align-items-center w-100 ms-lg-5 ms-md-4'>
                     <Col className='mx-2 mt-5 mt-md-0'>
@@ -134,13 +135,13 @@ const Header = () => {
                         <PersonalizedFormSelect funcao={e => dispatch(setTipo2(e.target.value))} texto='Escolha o 2º tipo' />
                     </Col>
                     <Col className='mx-2 my-1 mt-2 mt-md-1'>
-                        <Button onClick={pesquisarTipo}>Pesquisar pelo tipo</Button>
+                        <Button onClick={() => { pesquisarTipo(); setNavbarAberta(!navbarAberta); }}>Pesquisar pelo tipo</Button>
                     </Col>
                     <Col className='mx-2 mt-5 mt-md-0'>
                         <Form.Control onChange={e => dispatch(setNome(e.target.value))} type="text" placeholder="Procure pelo nome"/>
                     </Col>
                     <Col className='mx-2 my-1 mt-2 mt-md-1'>
-                        <Button onClick={pesquisarNome}>Pesquisar pelo nome</Button>
+                        <Button onClick={() => { pesquisarNome(); setNavbarAberta(!navbarAberta); }}>Pesquisar pelo nome</Button>
                     </Col>
                 </Nav>
             </Navbar.Collapse>
