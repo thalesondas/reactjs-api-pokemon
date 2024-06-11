@@ -120,12 +120,16 @@ const Header = () => {
         }
     }
 
+    const alternarNavbar = () => {
+        setNavbarAberta(!navbarAberta)
+    }
+
     return(
         <Navbar expand="md" expanded={navbarAberta} className='d-flex justify-content-between align-items-center'>
             <Navbar.Brand className='ms-4 me-lg-5 me-md-3'>
                 <Image src={PokeApiLogo} alt='PokéAPI Logo' />
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls='basic-navbar-nav' className='me-4' onClick={() => setNavbarAberta(!navbarAberta)}/>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' className='me-4' onClick={alternarNavbar}/>
             <Navbar.Collapse id='basic-navbar-nav'>
                 <Nav className='d-flex justify-content-between align-items-center w-100 ms-lg-5 ms-md-4'>
                     <Col className='mx-2 mt-5 mt-md-0'>
@@ -135,13 +139,13 @@ const Header = () => {
                         <PersonalizedFormSelect funcao={e => dispatch(setTipo2(e.target.value))} texto='Escolha o 2º tipo' />
                     </Col>
                     <Col className='mx-2 my-1 mt-2 mt-md-1'>
-                        <Button onClick={() => { pesquisarTipo(); setNavbarAberta(!navbarAberta); }}>Pesquisar pelo tipo</Button>
+                        <Button onClick={() => { pesquisarTipo(); alternarNavbar(); }}>Pesquisar pelo tipo</Button>
                     </Col>
                     <Col className='mx-2 mt-5 mt-md-0'>
                         <Form.Control onChange={e => dispatch(setNome(e.target.value))} type="text" placeholder="Procure pelo nome"/>
                     </Col>
                     <Col className='mx-2 my-1 mt-2 mt-md-1'>
-                        <Button onClick={() => { pesquisarNome(); setNavbarAberta(!navbarAberta); }}>Pesquisar pelo nome</Button>
+                        <Button onClick={() => { pesquisarNome(); alternarNavbar(); }}>Pesquisar pelo nome</Button>
                     </Col>
                 </Nav>
             </Navbar.Collapse>
