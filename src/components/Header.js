@@ -1,10 +1,10 @@
+import { useState } from 'react'
 import { Col, Image, Button, Form, Navbar, Nav } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { setNome, setTipo1, setTipo2, setDados, setErro, setPaginaAtual, setIndexUltimoItem, setIndexPrimeiroItem, setItemsAtuais } from '../redux/pokemonSlicers'
 import PersonalizedFormSelect from './PersonalizedFormSelect'
 import PokeApiLogo from '../images/pokeapi_logo.png'
 import '../assets/Header.css'
-import { useState } from 'react'
 
 const Header = () => {
 
@@ -121,7 +121,9 @@ const Header = () => {
     }
 
     const alternarNavbar = () => {
-        setNavbarAberta(!navbarAberta)
+        if (window.innerWidth < 768) {
+            setNavbarAberta(!navbarAberta)
+        }
     }
 
     return(
