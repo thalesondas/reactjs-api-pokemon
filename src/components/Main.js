@@ -63,13 +63,13 @@ const Main = () => {
             {!erro.erro && paginacao.paginaAtual !== 0 &&
                 <>
                     <Container className='mb-3 mt-4'>
-                        <Row className='text-center' style={{ height: '540px' }}>
-                            <Col className='d-flex flex-column align-items-center justify-content-center'>
+                        <Row className='text-center'>
+                            <Col className='w-50 ms-lg-5 d-flex flex-column align-items-center justify-content-center'>
                                 {paginacao.itemsAtuais && paginacao.itemsAtuais.map((pokemon) => (
                                     <PokemonButton marginBottom='mb-1' nome={pokemon} />
                                 ))}
                             </Col>
-                            <Col>
+                            <Col className='w-50 me-lg-5 d-flex align-items-center justify-content-center'>
                                 <div className={`${animation}`}>
                                     <h1>{nomePokemonFormatado}</h1>
                                     <Image className='mx-auto img-pokemon' src={pokemon.imagemPokemon}></Image>
@@ -79,7 +79,7 @@ const Main = () => {
                                         </div>
                                     }
                                     {pokemon.tipo2Pokemon && 
-                                        <div className={`div-pokemon ms-4 ${pokemon.tipo2Pokemon}`}>
+                                        <div className={`div-pokemon mt-1 ms-1 ms-sm-4 ${pokemon.tipo2Pokemon}`}>
                                             <span>{tipo2PokemonFormatado}</span>
                                         </div>
                                     }

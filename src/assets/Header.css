@@ -19,7 +19,7 @@ img{
     text-shadow: 0 0 1px black;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767.9px) {
     .navbar-collapse {
         position: fixed;
         top: 0;

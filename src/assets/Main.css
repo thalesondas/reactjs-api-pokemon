@@ -1,10 +1,12 @@
 main{
     background: linear-gradient(150deg, var(--cor-amarela), var(--cor-azul));
-    height: 82vh;
+    height: auto;
+    min-height: 82vh;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
+    overflow-x: hidden;
 }
 
 main .btn{
@@ -119,5 +121,41 @@ h1{
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@media (max-width: 991.98px) {
+    main .btn {
+        width: 300px;
+    }
+    .img-pokemon{
+        width: 330px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    main .btn{
+        width: 250px;
+    }  
+    .img-pokemon{
+        width: 280px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    main .btn{
+        width: 200px;
+    }  
+    .img-pokemon{
+        width: 230px;
+    }
+}
+
+@media (max-width: 408.98px){
+    main .btn{
+        width: 170px;
+    }
+    .img-pokemon{
+        width: 190px;
     }
 }
