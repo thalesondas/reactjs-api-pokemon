@@ -12,7 +12,6 @@ const PokemonButton = (props) => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${nome}/`)
             .then(resp => resp.json())
             .then(dados => {
-                console.log(dados)
                 dispatch(setImagemPokemon(dados.sprites.front_default))
                 dispatch(setNomePokemon(dados.name))
                 dispatch(setTipo1Pokemon(dados.types[0].type.name))
