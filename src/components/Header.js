@@ -140,13 +140,13 @@ const Header = () => {
                     <Col className='mx-2 mt-1 mt-md-0'>
                         <PersonalizedFormSelect funcao={e => dispatch(setTipo2(e.target.value))} texto='Escolha o 2º tipo' />
                     </Col>
-                    <Col className='mx-2 my-1 mt-2 mt-md-1'>
+                    <Col className='mx-2 my-1 my-md-0'>
                         <Button onClick={() => { pesquisarTipo(); alternarNavbar(); }}>Pesquisar pelo tipo</Button>
                     </Col>
                     <Col className='mx-2 mt-5 mt-md-0'>
                         <Form.Control onChange={e => dispatch(setNome(e.target.value))} type="text" placeholder="Procure pelo nome"/>
                     </Col>
-                    <Col className='mx-2 my-1 mt-2 mt-md-1'>
+                    <Col className='mx-2 my-1 my-md-0'>
                         <Button onClick={() => { pesquisarNome(); alternarNavbar(); }}>Pesquisar pelo nome</Button>
                     </Col>
                 </Nav>

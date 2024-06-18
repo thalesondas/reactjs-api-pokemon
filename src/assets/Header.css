@@ -1,5 +1,6 @@
 .navbar{
-    height: 10vh;
+    height: auto;
+    min-height: 10vh;
     background: linear-gradient(to right, var(--cor-amarela), var(--cor-azul));
     border-bottom: 2px solid black;
 }
