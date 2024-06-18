@@ -87,7 +87,7 @@ const Main = () => {
                             </Col>
                         </Row>
                         {paginas.length > 0 &&
-                            <Pagination className='d-flex justify-content-center mt-3'>
+                            <Pagination className='d-flex flex-wrap justify-content-center mt-4'>
                                 <Pagination.First onClick={() => paginaAtual(1)} disabled={paginacao.paginaAtual === 1}/>
                                 <Pagination.Prev onClick={() => paginaAtual(paginacao.paginaAtual - 1)} disabled={paginacao.paginaAtual === 1}/>
                                 {paginas}
