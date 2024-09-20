@@ -72,15 +72,7 @@ const rootReducer = combineReducers({
 
 export const { setDados } = dadosSlice.actions;
 export const { setErro } = erroSlice.actions;
-export const { setNome } = pesquisaSlice.actions;
-export const { setTipo1 } = pesquisaSlice.actions;
-export const { setTipo2 } = pesquisaSlice.actions;
-export const { setNomePokemon } = pokemonSlice.actions;
-export const { setTipo1Pokemon } = pokemonSlice.actions;
-export const { setTipo2Pokemon } = pokemonSlice.actions;
-export const { setImagemPokemon } = pokemonSlice.actions;
-export const { setPaginaAtual } = paginacaoSlice.actions;
-export const { setIndexUltimoItem } = paginacaoSlice.actions;
-export const { setIndexPrimeiroItem } = paginacaoSlice.actions;
-export const { setItemsAtuais } = paginacaoSlice.actions;
+export const { setNome, setTipo1, setTipo2 } = pesquisaSlice.actions;
+export const { setNomePokemon, setTipo1Pokemon, setTipo2Pokemon, setImagemPokemon } = pokemonSlice.actions;
+export const { setPaginaAtual, setIndexUltimoItem, setIndexPrimeiroItem, setItemsAtuais } = paginacaoSlice.actions;
 export default rootReducer;
