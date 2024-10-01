@@ -27,13 +27,13 @@ const Main = () => {
     }
     useEffect(() => {
         dispatch(setIndexUltimoItem(paginacao.paginaAtual * paginacao.itemsPorPagina))
-    }, [paginacao.paginaAtual])
+    }, [paginacao.paginaAtual, paginacao.itemsPorPagina, dispatch])
     useEffect(() => {
         dispatch(setIndexPrimeiroItem(paginacao.indexUltimoItem - paginacao.itemsPorPagina))
-    }, [paginacao.indexUltimoItem])
+    }, [paginacao.indexUltimoItem, paginacao.itemsPorPagina, dispatch])
     useEffect(() => {
         dispatch(setItemsAtuais(dados.dados.slice(paginacao.indexPrimeiroItem, paginacao.indexUltimoItem)))
-    }, [paginacao.indexPrimeiroItem])
+    }, [paginacao.indexPrimeiroItem, paginacao.indexUltimoItem, dados.dados, dispatch])
 
     useEffect(() => {
         const novasPaginas = [];
@@ -45,7 +45,7 @@ const Main = () => {
             );
         }
         setPaginas(novasPaginas);
-    }, [paginacao.itemsAtuais]);
+    }, [paginacao.itemsAtuais, paginacao.paginaAtual, paginacao.itemsPorPagina, paginaAtual, dados.dados.length]);
 
     useEffect(() => {
         setAnimation('fade-left')
